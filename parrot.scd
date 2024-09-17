@@ -61,7 +61,7 @@ s.waitForBoot({
 		var volumeSlider = GMFaderSlider()
 		.value_(amp)
 		.displayValue_(false)
-		.drawHelpers_(true)
+		.displayHelpers_(true)
 		.helpersStyle_(\dot)
 		.helpersRatio_(0.05)
 		.helpersNumber_(3)
