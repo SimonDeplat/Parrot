@@ -10,11 +10,13 @@ You will need SuperCollider to run this project. SuperCollider usage is beyond t
 
 You also need to install the GraphicalModule quark to run it. You can use the dedicated interface, or evaluate `Quarks.install("GraphicalModule");` to do so. Then you'll have to recompile the library (re-open SuperCollider or use `CTRL + SHIFT + L`).
 
-Then, evaluate `parrot.scd` within SuperCollider (once configured).
+If you had the GraphicalModule installed already, make sure it is up-to-date by evaluating `Quarks.update("Grapgical-Module")`. Then, recompile.
+
+To run Parrot, evaluate `parrot.scd` within SuperCollider (once configured).
 
 #### Configuration
 
-On top of the code, you can find 4 parameters you might want to modify :
+On top of the code, you can find 5 parameters you might want to modify:
 
 `numLoops` is the number of looping channels.
 
@@ -24,19 +26,25 @@ On top of the code, you can find 4 parameters you might want to modify :
 
 `maxLoopLength` sets the loops maximum duration. This allows to allocate enough memory to record the loops. You should never record a loop that exceeds this length, so plan ahead.
 
+Then, you can find three string variables which defines which keyboard keys will control the software. As an example, `var recordKeys = "asdfghjkl;";` means that the 'a' keyboard key will start/stop the first channel recording, while the 'f' key will control the 4th channel recording, etc.
+
 #### Usage
 
-When the software is running, the input sound always goes through. Then, you have an arbitrary number of loops.
+When the software is running, the input sound always goes through (so be careful with larsens). Then, you have access to an arbitrary number of loops (channels).
 
-For each channel :
+For each channel, 4 actions are available:
 
-Clicking the record button once will start recording. Clicking it again will stop the recording, and start looping the segment that has been recorded.
+- **clear**: when a loop is running, clicking the topmost button, which displays a tape recorder, will stop and clear the loop.
 
-Clicking the silence button will remove the loop.
+- **record**: clicking the record button once will start recording. Clicking it again will stop the recording, and start looping the segment that has been recorded. The channel's topmost button will display a tape recorder, meaning a loop is currently playing. Starting recording an already playing loop will **clear** it immediatly, and start recording.
 
-Then, there's a slider that allows to control the volume of the loop.
+- **mute**: toggling the rest button will mute/unmute the channel.
 
-On top of those controls, there's a visual hint indicating if there's a loop currently playing, or not.
+- **volume**: a slider allows to mix the channel's volume.
+
+#### Keyboard controls
+
+**clear**, **record** and **mute** actions are also bound to character keys. Those are predefined within the file header.
 
 `CTRL + F` to toggle fullscreen, `ESC` to quit.
 
